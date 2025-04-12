@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrendFusion - Predict Trends Before They Peak</title>
+  <style>
+    /* General Reset */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      box-sizing: border-box;
+    }
+    * {
+      box-sizing: inherit;
+    }
+    a {
+      text-decoration: none;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      background: white;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #6e8efb;
+      cursor: pointer;
+    }
+    .navbar .login-btn {
+      background: linear-gradient(45deg, #6e8efb, #a777e3);
+      color: white;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: box-shadow 0.3s;
+    }
+    .navbar .login-btn:hover {
+      box-shadow: 0 4px 10px rgba(110, 142, 251, 0.6);
+    }
+
+    /* Trending News Ticker */
+    .news-ticker {
+      background: #f0f0f0;
+      border-bottom: 2px solid #ddd;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+    .news-ticker .ticker-content {
+      display: inline-block;
+      animation: scrollTicker 10s linear infinite;
+    }
+    .news-ticker-item {
+      display: inline-block;
+      margin-right: 40px;
+      font-size: 1rem;
+      font-family: monospace;
+      cursor: pointer;
+    }
+    .news-ticker-item:hover {
+      text-decoration: underline;
+    }
+    .news-ticker-item span {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    .news-ticker-item.stocks span {
+      color: red;
+    }
+    .news-ticker-item.social span {
+      color: purple;
+    }
+    .news-ticker-item.products span {
+      color: blue;
+    }
+
+    @keyframes scrollTicker {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: #f9f9f9;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #6e8efb, #a777e3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #555;
+      margin: 20px 0;
+    }
+    .hero img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    /* Footer */
+    .footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .footer a {
+      color: #6e8efb;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">TrendFusion</div>
+    <button class="login-btn" id="loginButton">Login</button>
+  </div>
+
+  <!-- Trending News Ticker -->
+  <div class="news-ticker" id="newsTicker">
+    <div class="ticker-content" id="tickerContent">
+      <!-- Dynamic headlines will be injected here via JavaScript -->
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Predict Trends Before They Peak</h1>
+    <p>AI-powered analytics for businesses, investors, and creators.</p>
+    <img src="https://via.placeholder.com/600x300" alt="Data Visualization">
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    &copy; 2024 | <a href="#">Privacy Policy</a> | <a href="#">Contact</a>
+  </div>
+
+  <script>
+    // Mock Data for News Headlines
+    const newsData = {
+      stocks: ["TSLA +8% on Cybertruck demand", "Gold prices drop amid Fed news"],
+      social: ["Instagram Reels dominate Gen Z", "X (Twitter) introduces AI posts"],
+      products: ["Amazon Prime Day dates leaked", "Samsung Galaxy Z Fold 6 preview"]
+    };
+
+    // Populate News Ticker
+    const tickerContent = document.getElementById('tickerContent');
+    const headlines = [
+      ...newsData.stocks.map(news => `<span class="news-ticker-item stocks"><span>📈</span>${news}</span>`),
+      ...newsData.social.map(news => `<span class="news-ticker-item social"><span>📱</span>${news}</span>`),
+      ...newsData.products.map(news => `<span class="news-ticker-item products"><span>🛒</span>${news}</span>`)
+    ];
+    tickerContent.innerHTML = headlines.join(" ");
+
+    // Add Click Event to Open Auth Modal
+    document.querySelectorAll('.news-ticker-item').forEach(item => {
+      item.addEventListener('click', () => {
+        alert('Login required to view more details!');
+      });
+    });
+  </script>
+
+</body>
+</html>
